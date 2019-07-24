@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- react url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.development.js"></script>
+    <!-- react-dom url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    <!-- babel is not related to react -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        class StopWatch extends React.Component{
+            constructor(props){
+                super(props);
+                
+                this.state = {
+                    count:this.props.initialValue
+                    isRunning:this.props.isRunning
+                };
+            }
+            start = () => {
+                this.setState({
+                    count:this.state.count+1
+                    isRunning=true
+                })
+            }
+            stop = () => {
+                this.setState({
+                    count:this.state.count-1
+                    isRunning=false
+                })
+            }
+            reset = () => {
+                this.setState({
+                    count:0
+                })
+            }
+            render(){
+                return(
+                    <div className="container">
+                        Count:{this.state.count}
+                        <button className="btn btn-success btn-5m" onClick={this.start}>Start</button>
+                        <button className="btn btn-danger btn-5m" onClick={this.stop}>Stop</button>
+                        <button className="btn btn-primary btn-5m" onClick={this.reset}>Reset</button>
+                    </div>
+                    
+                );
+            }
+        }
+        ReactDOM.render( <StopWatch initialValue={0} isRunning={false}/>,document.getElementById('root'));
+    </script>
+</body>
+
+</html>
