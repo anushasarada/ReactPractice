@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- react url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js"></script>
+    <!-- react-dom url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js"></script>
+    <!-- babel is not related to react -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        //JSX: javascript XML - an extension to js
+        //React Element similar to DOM node
+        const div2={
+            <footer>
+                <div id="div-1" title="I am a div">This is a div</div>
+            </footer>
+        };
+        const div1 = React.createElement('div',{id:'div-1',title:'I am a div'},'This is a div');
+        const footer = React.createElement('Footer',null,'This app is built using react','One more line here',div1);
+        /* props:
+            children: Array(2)
+            0: "This app is built using react"
+            1: "One more line here"
+            length: 2 */
+        console.log(footer);
+        console.log(footer.props.children);
+        //1st arg: REACT element
+        //2nd arg: DOM node
+        ReactDOM.render(footer, document.getElementById('root'));
+    </script>
+</body>
+</html>

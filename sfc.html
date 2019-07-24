@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- react url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.development.js"></script>
+    <!-- react-dom url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    <!-- babel is not related to react -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    
+    <script type="text/babel">
+        function Invoice(props){
+            console.log('props=',props);
+            console.log(new props.someClass());
+            return <div>id:{props.x}<br/>Message:{props.message}</div>
+        }
+        //only string value are passed as ""
+        //rest of all types are passed as {}
+        const items=[1,2,3,4];
+        const fn2 = () => console.log('this is a fun');
+        class Person{}
+        ReactDOM.render(
+            <Invoice 
+                x={1}
+                message="hello"
+                isRaining={false}
+                items={items}
+                obj={{x:1,y:'hello'}}
+                fn={() => console.log('this is a fun')}
+                fn3={fn2}
+                someClass={Person}
+            />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>

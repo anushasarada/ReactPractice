@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <style>
+        .crimson {
+            color: crimson;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- react url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.development.js"></script>
+    <!-- react-dom url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    <!-- babel is not related to react -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+            const styleForInvoice ={
+                fontWeight:"bold"
+            };
+
+            const items =[
+                {id:1, name:'Milk', quantity:2, price:40},
+                {id:2, name:'Eggs', quantity:12, price:60},
+                {id:3, name:'Tea', quantity:2, price:15}
+            ];
+            function Invoice(props){
+                return (
+                    <React.Fragment>
+                    <div>This is 1st element</div>
+                    <div className="container crimson" style={styleForInvoice}>
+                    <h2>Invoice</h2>
+                    <hr/>
+                    <div style={{color:"olive"}}>
+                        Customer Name: {props.customerName}
+                        <br/>
+                        {props.discountCode ? <div>Discount code: {props.discountCode}</div> : null}
+                        {props.discountCode && <div>Discount code: {props.discountCode}</div>}
+                        <table className="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    props.items.map( item => {
+                                        return(
+                                            <tr key={item.id}>
+                                                <td>{item.name}</td>
+                                                <td>{item.quantity}</td>
+                                                <td>{item.price}</td>
+                                                <td>{item.price * item.quantity}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </React.Fragment>
+                )
+            }
+            ReactDOM.render(
+            <Invoice 
+                items={items}
+                customerName = "John Doe"
+                discountCode = "SWIGGY30"
+            />,
+            document.getElementById('root')
+        );
+        </script>
+</body>
+
+</html>

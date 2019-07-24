@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- react url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.development.js"></script>
+    <!-- react-dom url -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    <!-- babel is not related to react -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <!-- Once created a react element, it can never be modified -->
+    <script type="text/babel">
+        /* const div = <div>Hello</div>;
+        console.log(div);
+        div.props.children = "New Child"
+        console.log(div); */
+
+        //function Clock(){
+        class Clock extends React.Component{
+            constructor(props){
+                super(props);
+                
+                this.state = {
+                    today: new Date()
+                };
+            }
+            render(){
+                const today = new Date()
+                return(
+                    <div>{this.state.today.toTimeString()}</div>
+                );
+            }
+            componentDidMount(){
+                setInterval(() => {
+                    /* this.state={
+                        today: new Date()
+                    };
+                    this.render();
+                    ReactDOM.render(this.render(),document.getElementById('root')); */
+                    this.setState({
+                        today: new Date()
+                    });
+                }, 1000);
+            }
+        }
+        ReactDOM.render( <Clock/>,document.getElementById('root'));
+
+        /* function render(){
+            ReactDOM.render( <Clock/>,document.getElementById('root'));
+        }
+        render();
+        /* since the react element can't be modified, new instances have to created every second 
+        setInterval(render, 1000); */
+    </script>
+</body>
+
+</html>
